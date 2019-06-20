@@ -1,50 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import ExpressionBox from './components/ExpressionBox'
-import ResultBox from './components/ResultBox'
-import NumPad from './components/NumPad'
+import ExpressionBox from './components/ExpressionBox.js';
+import ResultBox from './components/ResultBox.js';
+import NumPad from './components/NumPad.js';
 
+// We are using math.js library to calculate results from any string expression
+const math = require('mathjs');
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+export default class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {lastexpression: [], expression: '', result: ''}
 
-type Props = {};
-export default class App extends Component<Props> {
-  state={
-    expression: '',
-    result:''
+    this._assembleExpression = this._assembleExpression.bind(this);
+    this._calculateResult = this._calculateResult.bind(this);
+    this._rollbackExpression = this._rollbackExpression.bind(this);
   }
-  _assembleExpression =() => {
 
+  _rollbackExpression() {
+    this.state.expression && this.setState((prevState) => ({
+      expression: prevState.lastexpression.pop(),
+      lastexpression: prevState.lastexpression
+    }));
   }
-  _calculateResult =()=> {
 
+  _assembleExpression(symbol) {
+    this.setState((prevState) => ({
+      lastexpression: [...prevState.lastexpression, prevState.expression],
+      expression: prevState.expression + symbol
+    }));
   }
-  _rollbackExpression =()=> {
 
+  _calculateResult() {
+    let result;
+    try {
+      result = math.eval(this.state.expression);
+    } catch (e) {
+      result = 'Error';
+    }
+    this.setState({result: result});
   }
+
   render() {
     return (
       <View style={styles.container}>
-        <ExpressionBox expression ={this.state.expression} />
-         <ResultBox result ={this.state.result} />
-      <NumPad
+        <ExpressionBox expression={this.state.expression}/>
+        <ResultBox result={this.state.result}/>
+        <NumPad
           assembleExpression={this._assembleExpression}
           calculateResult={this._calculateResult}
-          deletePressed={this._rollbackExpression} />
-
+          deletePressed={this._rollbackExpression}/>
       </View>
     );
   }
@@ -52,7 +58,6 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    
+    flex: 1
   },
 });

@@ -23,7 +23,7 @@ export default class Key extends Component {
 const styles = StyleSheet.create({
     key:{
         borderRadius: 30,
-        backgroundColor: '#c7c7c7',
+        backgroundColor: '#eaeaea',
         width: 60,
         height: 60,
         justifyContent: 'center',

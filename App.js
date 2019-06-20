@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import ExpressionBox from './components/ExpressionBox'
 import ResultBox from './components/ResultBox'
+import NumPad from './components/NumPad'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',

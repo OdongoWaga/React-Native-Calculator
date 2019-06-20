@@ -5,7 +5,7 @@ export default class ResultBox extends Component {
     render() {
         return (
             <Text style={styles.resultbox}>
-                {this.props.expression}
+                {this.props.result}
             </Text>
         )
     }

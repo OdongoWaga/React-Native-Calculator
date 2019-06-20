@@ -12,7 +12,7 @@ export default class Key extends Component {
             style={this.props.op ? [styles.key, styles.opkey]: styles.key}
             onPress={this._onPress}>
                 <View>
-                    <Text> {this.props.symbol} </Text>
+                    <Text style={styles.keytext}> {this.props.symbol} </Text>
                 </View>
             </TouchableHighlight>
 
@@ -21,5 +21,16 @@ export default class Key extends Component {
 }
 
 const styles = StyleSheet.create({
+    key:{
+        borderRadius: 30,
+        backgroundColor: '#c7c7c7',
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    keytext: {
+        fontSize: 20
+    }
    
 })

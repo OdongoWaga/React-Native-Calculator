@@ -10,16 +10,14 @@ export default class ResultBox extends Component {
         )
     }
 }
-
 const styles = StyleSheet.create({
-    resultbox:{
-    flex: 1,
-    textAlign: 'right',
-    paddingLeft: 8,
-    paddingRight: 8,
-    backgroundColor: '#909090',
-    fontSize: 26,
-    color: '#424242'
-    
-    }
-})
+    resultbox: {
+      flex: 1,
+      paddingLeft: 8,
+      paddingRight: 8,
+      backgroundColor: '#80cbc4',
+      fontSize: 26,
+      textAlign: 'right',
+      color: '#424242',
+    },
+  });

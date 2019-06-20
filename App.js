@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import ExpressionBox from './components/ExpressionBox'
+import ResultBox from './components/ResultBox'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -36,11 +37,11 @@ export default class App extends Component<Props> {
     return (
       <View style={styles.container}>
         <ExpressionBox expression ={this.state.expression} />
-        {/* <ResultBox result ={this.state.result} />
-        <NumPad
+         <ResultBox result ={this.state.result} />
+      <NumPad
           assembleExpression={this._assembleExpression}
           calculateResult={this._calculateResult}
-          deletePressed={this._rollbackExpression} /> */}
+          deletePressed={this._rollbackExpression} />
 
       </View>
     );

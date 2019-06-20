@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {StyleSheet, Text} from 'react-native'
 
-export default class ExpressionBox extends Component {
+export default class ResultBox extends Component {
     render() {
         return (
-            <Text style={styles.expressionbox}>
+            <Text style={styles.resultbox}>
                 {this.props.expression}
             </Text>
         )
@@ -12,14 +12,14 @@ export default class ExpressionBox extends Component {
 }
 
 const styles = StyleSheet.create({
-    expressionbox:{
+    resultbox:{
     flex: 1,
     textAlign: 'right',
     paddingLeft: 8,
     paddingRight: 8,
     backgroundColor: '#909090',
-    fontSize: 32,
-    color: '#212121'
+    fontSize: 26,
+    color: '#424242'
     
     }
 })

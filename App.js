@@ -9,33 +9,27 @@ import NumPad from './components/NumPad.js';
 const math = require('mathjs');
 
 export default class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {lastexpression: [], expression: '', result: ''}
+  
+    state = {lastexpression: [], expression: '', result: ''}
 
-    this._assembleExpression = this._assembleExpression.bind(this);
-    this._calculateResult = this._calculateResult.bind(this);
-    this._rollbackExpression = this._rollbackExpression.bind(this);
-  }
-
-  _rollbackExpression() {
+  _rollbackExpression= () => {
     this.state.expression && this.setState((prevState) => ({
       expression: prevState.lastexpression.pop(),
       lastexpression: prevState.lastexpression
     }));
   }
 
-  _assembleExpression(symbol) {
+  _assembleExpression =(symbol)=> {
     this.setState((prevState) => ({
       lastexpression: [...prevState.lastexpression, prevState.expression],
       expression: prevState.expression + symbol
     }));
   }
 
-  _calculateResult() {
+  _calculateResult =()=> {
     let result;
     try {
-      result = math.eval(this.state.expression);
+      result = math.evaluate(this.state.expression);
     } catch (e) {
       result = 'Error';
     }
